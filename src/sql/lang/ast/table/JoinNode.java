@@ -78,7 +78,7 @@ public class JoinNode extends TableNode {
     public String prettyPrint(int indentLv, boolean asSubquery) {
         String result = this.tableNodes.get(0).prettyPrint(1, true).trim();
         for (int i = 1; i < this.tableNodes.size(); i ++) {
-            result += " Join \r\n" + this.tableNodes.get(i).prettyPrint(1,true);
+            result += " Join \r\n" + this.tableNodes.get(i).prettyPrint(1,true) + " on true ";
         }
         return IndentionManagement.addIndention(result, indentLv);
     }
