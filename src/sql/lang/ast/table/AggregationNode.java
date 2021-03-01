@@ -199,7 +199,14 @@ public class AggregationNode extends TableNode {
         }
         for (int i = 0; i < targets.size(); i ++) {
             Pair<String, Function<List<Value>, Value>> t = targets.get(i);
-            result += FuncName(t.getValue()) + "(" + t.getKey() + ") As " + this.getSchema().get(this.groupbyColumns.size() + i);
+            String operator = FuncName(t.getValue());
+            if (operator == "Count_distinct"){
+                result += "Count (Distinct " + t.getKey() + ") As " + this.getSchema().get(this.groupbyColumns.size() + i);
+            }
+            else{
+                result += FuncName(t.getValue()) + "(" + t.getKey() + ") As " + this.getSchema().get(this.groupbyColumns.size() + i);
+            }
+
             if (i != targets.size() - 1)
                 result +=  ", ";
             else {

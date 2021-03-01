@@ -67,9 +67,9 @@ public class UnionNode extends TableNode {
 
     @Override
     public String prettyPrint(int indentLv, boolean asSubquery) {
-        String result = "Select * From \r\n" + this.tableNodes.get(0).prettyPrint(1, true).trim();
+        String result = "Select * From \r\n" + this.tableNodes.get(0).prettyPrint(1, true).trim() + " AS foo ";
         for (int i = 1; i < this.tableNodes.size(); i ++) {
-            result += "\r\nUnion All \r\n " + "Select * From\r\n" + this.tableNodes.get(i).prettyPrint(1, true);
+            result += "\r\nUnion All \r\n " + "Select * From\r\n" + this.tableNodes.get(i).prettyPrint(1, true) + " AS foo";
         }
         return IndentionManagement.addIndention(result, indentLv);
     }
