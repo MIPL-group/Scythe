@@ -105,7 +105,7 @@ public class RenameTableNode extends TableNode {
         String result = "";
         if (allOldName) {
             String temp = tableNode.prettyPrint(1, true).trim();
-            if (temp.contains("Select")){
+            if (temp.contains("Select ")){
                 result = "(" + temp + ") As " + this.newTableName;
             }
             else{

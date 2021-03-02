@@ -203,6 +203,9 @@ public class AggregationNode extends TableNode {
             if (operator == "Count_distinct"){
                 result += "Count (Distinct " + t.getKey() + ") As " + this.getSchema().get(this.groupbyColumns.size() + i);
             }
+            else if (operator == "Concat"){
+                result += "Array_agg (" + t.getKey() + ") As " + this.getSchema().get(this.groupbyColumns.size() + i);
+            }
             else{
                 result += FuncName(t.getValue()) + "(" + t.getKey() + ") As " + this.getSchema().get(this.groupbyColumns.size() + i);
             }
