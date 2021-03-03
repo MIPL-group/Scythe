@@ -158,7 +158,8 @@ public class SelectNode extends TableNode {
 
         if (selectFieldsAllSame && (this.filter instanceof EmptyFilter)) {
             String inner = tableNode.prettyPrint(0, true);
-            return IndentionManagement.addIndention("Select * from " + inner, indentLv);
+            //return IndentionManagement.addIndention("Select * from " + inner, indentLv);
+            return IndentionManagement.addIndention(inner, indentLv);
         }
 
         String result = "";
