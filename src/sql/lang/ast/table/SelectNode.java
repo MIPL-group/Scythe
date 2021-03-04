@@ -159,7 +159,7 @@ public class SelectNode extends TableNode {
         if (selectFieldsAllSame && (this.filter instanceof EmptyFilter)) {
             String inner = tableNode.prettyPrint(0, true, "select");
 
-            if (parent == "rename"){ // need to check the parent node is rename node, if parent node is rename node
+            if (parent == "rename" || parent == ""){ // need to check the parent node is rename node, if parent node is rename node
                 return IndentionManagement.addIndention("Select * from " + inner, indentLv);
             }
             return IndentionManagement.addIndention(inner, indentLv);
