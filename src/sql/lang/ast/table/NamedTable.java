@@ -50,7 +50,7 @@ public class NamedTable extends TableNode {
     }
 
     @Override
-    public String prettyPrint(int indentLv, boolean asSubquery) {
+    public String prettyPrint(int indentLv, boolean asSubquery, String parent) {
         return IndentionManagement.addIndention(this.getTableName(), indentLv);
     }
 

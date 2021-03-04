@@ -192,7 +192,7 @@ public class AggregationNode extends TableNode {
     }
 
     @Override
-    public String prettyPrint(int indentLv, boolean asSubquery) {
+    public String prettyPrint(int indentLv, boolean asSubquery, String parent) {
         String result = "Select\r\n" + IndentionManagement.basicIndent();
         for (String f : groupbyColumns) {
             result += f + ", ";
@@ -218,7 +218,7 @@ public class AggregationNode extends TableNode {
             }
         }
         result += "From\r\n";
-        result += this.tn.prettyPrint(1, true);
+        result += this.tn.prettyPrint(1, true, "aggregation");
 
         if (! groupbyColumns.isEmpty()) {
             result += "\r\nGroup By\r\n";

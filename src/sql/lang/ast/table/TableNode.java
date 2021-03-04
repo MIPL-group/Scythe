@@ -38,9 +38,9 @@ public abstract class TableNode implements Node {
         return result;
     }
 
-    public abstract String prettyPrint(int indentLv, boolean asSubquery);
+    public abstract String prettyPrint(int indentLv, boolean asSubquery, String parentNode);
     public String printQuery() {
-        String query = this.prettyPrint(0, false) + ";";
+        String query = this.prettyPrint(0, false, "") + ";";
         Set<String> generatedNames = RenameTNWrapper.findAllGeneratedNames(query)
                 .stream().collect(Collectors.toSet());
 

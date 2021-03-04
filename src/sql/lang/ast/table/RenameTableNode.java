@@ -84,7 +84,7 @@ public class RenameTableNode extends TableNode {
     }
 
     @Override
-    public String prettyPrint(int indentLv, boolean asSubquery) {
+    public String prettyPrint(int indentLv, boolean asSubquery, String parent) {
 
         String selectString = "";
         boolean allOldName = true;
@@ -104,7 +104,7 @@ public class RenameTableNode extends TableNode {
 
         String result = "";
         if (allOldName) {
-            String temp = tableNode.prettyPrint(1, true).trim();
+            String temp = tableNode.prettyPrint(1, true, "rename").trim();
             if (temp.contains("Select ")){
                 result = "(" + temp + ") As " + this.newTableName;
             }
@@ -114,7 +114,7 @@ public class RenameTableNode extends TableNode {
 
         } else {
             result = "(Select " + selectString + "\r\n" + "From "
-                    + tableNode.prettyPrint(1, true).trim() + ") As " + this.newTableName;
+                    + tableNode.prettyPrint(1, true, "rename").trim() + ") As " + this.newTableName;
         }
 
         if (asSubquery)

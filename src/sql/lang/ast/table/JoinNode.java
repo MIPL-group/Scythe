@@ -75,10 +75,10 @@ public class JoinNode extends TableNode {
     }
 
     @Override
-    public String prettyPrint(int indentLv, boolean asSubquery) {
-        String result = this.tableNodes.get(0).prettyPrint(1, true).trim();
+    public String prettyPrint(int indentLv, boolean asSubquery, String parent) {
+        String result = this.tableNodes.get(0).prettyPrint(1, true, "join").trim();
         for (int i = 1; i < this.tableNodes.size(); i ++) {
-            String temp = this.tableNodes.get(i).prettyPrint(1,true);
+            String temp = this.tableNodes.get(i).prettyPrint(1,true, "join");
             result += " Natural Join \r\n" + temp;
         }
         return IndentionManagement.addIndention(result, indentLv);

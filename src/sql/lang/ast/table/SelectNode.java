@@ -142,7 +142,7 @@ public class SelectNode extends TableNode {
     }
 
     @Override
-    public String prettyPrint(int indentLv, boolean asSubquery) {
+    public String prettyPrint(int indentLv, boolean asSubquery, String parent) {
 
         // determine if it is select all
         boolean selectFieldsAllSame = false;
@@ -157,9 +157,9 @@ public class SelectNode extends TableNode {
         }
 
         if (selectFieldsAllSame && (this.filter instanceof EmptyFilter)) {
-            String inner = tableNode.prettyPrint(0, true);
+            String inner = tableNode.prettyPrint(0, true, "select");
 
-            if (true){ // need to check the parent node is rename node, if parent node is rename node
+            if (parent == "rename"){ // need to check the parent node is rename node, if parent node is rename node
                 return IndentionManagement.addIndention("Select * from " + inner, indentLv);
             }
             return IndentionManagement.addIndention(inner, indentLv);
@@ -188,7 +188,7 @@ public class SelectNode extends TableNode {
 
         result += " From\r\n";
 
-        result += tableNode.prettyPrint(1, true);
+        result += tableNode.prettyPrint(1, true, "select");
 
         result += "\r\n";
         if (! (this.filter instanceof EmptyFilter)) {

@@ -53,7 +53,7 @@ public class NaturalTableExtensionTest {
         //DebugHelper.printTableNodes(tns);
 
         for (TableNode tn : tns) {
-            System.out.println(tn.prettyPrint(0, false));
+            System.out.println(tn.prettyPrint(0, false, ""));
             DebugHelper.printList(tn.getSchema());
             DebugHelper.printList(tn.getSchemaType());
         }

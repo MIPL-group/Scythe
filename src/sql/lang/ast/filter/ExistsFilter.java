@@ -57,12 +57,12 @@ public class ExistsFilter implements Filter {
     public String prettyPrint(int indentLv) {
         if (notExists == true) {
             return IndentionManagement.addIndention(
-                    "Not Exists \r\n" + tableNode.prettyPrint(1, true),
+                    "Not Exists \r\n" + tableNode.prettyPrint(1, true, ""),
                     indentLv
             );
         }
         return IndentionManagement.addIndention(
-                "Exists \r\n" + tableNode.prettyPrint(1, true),
+                "Exists \r\n" + tableNode.prettyPrint(1, true,""),
                 indentLv
         );
     }

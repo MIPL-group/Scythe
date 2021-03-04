@@ -110,9 +110,9 @@ public class LeftJoinNode extends TableNode {
     }
 
     @Override
-    public String prettyPrint(int indentLv, boolean asSubquery) {
-        String result = this.tn1.prettyPrint(1, true).trim();
-        result += " Left Outer Join \r\n" + this.tn2.prettyPrint(1, true);
+    public String prettyPrint(int indentLv, boolean asSubquery, String parent) {
+        String result = this.tn1.prettyPrint(1, true, "leftjoin").trim();
+        result += " Left Outer Join \r\n" + this.tn2.prettyPrint(1, true, "leftjoin");
 
         if (joinKeys.isEmpty())
             return IndentionManagement.addIndention(result, indentLv);
@@ -133,7 +133,7 @@ public class LeftJoinNode extends TableNode {
 
     @Override
     public String toString() {
-        return this.prettyPrint(0, false);
+        return this.prettyPrint(0, false, "leftjoin");
     }
 
     @Override
