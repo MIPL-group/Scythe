@@ -188,8 +188,10 @@ public class SelectNode extends TableNode {
 
         result += " From\r\n";
 
-        result += tableNode.prettyPrint(1, true, "select");
+        String child = tableNode.prettyPrint(1, true, "select");
 
+
+        result += child;
         result += "\r\n";
         if (! (this.filter instanceof EmptyFilter)) {
             result += " Where ";
@@ -198,6 +200,11 @@ public class SelectNode extends TableNode {
 
         if (asSubquery)
             result = "(" + result + ")";
+
+        if(parent == "join" && tableNode instanceof RenameTableNode) {
+            int start = child.lastIndexOf("As");
+            result = result + child.substring(start);
+        }
         return IndentionManagement.addIndention(result, indentLv);
     }
 
